@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+// import { Popup, Marker } from 'leaflet';
+import React from 'react'
+import L from 'leaflet';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import 'leaflet/dist/leaflet.css';
+import icon from 'leaflet/dist/images/marker-icon.png';
+import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+import iconRetina from 'leaflet/dist/images/marker-icon-2x.png';
+import iconMap from './assets/icons/icon-location.svg'
 
-function App() {
+let DefaultIcon = L.icon({
+            ...L.Icon.Default.prototype.options,
+            iconUrl: iconMap,
+            iconRetinaUrl: iconMap,
+            shadowUrl: iconShadow
+        });
+        L.Marker.prototype.options.icon = DefaultIcon;
+ 
+const App = ()=> {
+  const position = [51.505, -0.09]
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MapContainer center={position} zoom={13} scrollWheelZoom={false} style={{width: '90vw', height: '80vh'}}>
+    <TileLayer
+      attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+    />
+    <Marker position={position} color={"red"} fillColor={"#f03"} radius={500}>
+      <Popup>
+        A pretty CSS3 popup. <br /> Easily customizable.
+      </Popup>
+    </Marker>
+  </MapContainer>
   );
 }
 
