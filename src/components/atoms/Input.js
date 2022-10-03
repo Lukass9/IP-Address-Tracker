@@ -1,22 +1,35 @@
 import styled from "styled-components"; 
-import Details from "../organisms/Details/Details";
+import arrow from  '../../assets/icons/icon-arrow.svg'
+
 const Wrapp = styled.div` 
     display: flex;
 `
 const Inp = styled.input` 
     margin: 0;
-    padding: 17px;
+    padding: 25px;
     border: none;
     outline: none;
-    border-radius: 10px 0 0 10px;
-   width: 77vw; 
+    border-radius: 15px 0 0 15px;
+    width: 73vw; 
+
+    @media screen and (min-width: 1440px){
+        width: 25vw;
+        padding: 15px;
+    }
 `
 const Sub = styled.button`
-    width: 13vw;
+    width: 18vw;
     background-color: black;
     border: none;
     outline: none;
-    border-radius: 0 10px 10px 0;
+    border-radius: 0 15px 15px 0;
+    background-image: url(${arrow});
+    background-position: center;
+    background-repeat: no-repeat;
+
+    @media screen and (min-width: 1440px){
+        width: 3vw;
+    }
 `
 
 const Input = () =>{

@@ -9,12 +9,17 @@ const Wrapp = styled.div`
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    height: 35vh;
+    height: 450px;
     width: 100%;
     margin: 0;
     background-image: url(${BG});
     background-size: cover;
     background-position: center;
+
+    @media screen and (min-width: 1440px){
+        height: 35vh;
+        justify-content: space-evenly;
+    }
 `
 
 const HeaderBg = ()=> {

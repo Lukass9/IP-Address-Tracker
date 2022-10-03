@@ -6,7 +6,9 @@ import HeaderBg from './components/organisms/HeaderBG/HeaderBg';
 
 const Wrapp = styled.div` 
     display: flex;
+    position: relative;
     flex-direction: column;
+    height: 100vh;
 `
 
 const App = ()=> {

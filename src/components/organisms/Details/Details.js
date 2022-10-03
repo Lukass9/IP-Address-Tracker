@@ -1,9 +1,15 @@
 import styled from "styled-components"
+import Info from "../../molecules/Info/Info"
 
 const WrappRelative = styled.div`
     position: relative;
     height: 15vh;
     width: 90vw;
+
+    @media screen and (min-width: 1440px){
+        width: 65vw;
+        height: 6vh;
+    }
 `
 const Wrapp = styled.div`
     position: absolute;
@@ -12,10 +18,18 @@ const Wrapp = styled.div`
     align-items: center;
     top: 0;
     width: 100%;
-    height: 38vh;
+    height: 280px;
     background-color: white;
     z-index: 10000;
-    border-radius: 10px;
+    border-radius: 15px;
+
+    @media screen and (min-width: 1440px){
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 2vw 0;
+        height: min-content;
+        /* top: 50%; */
+    }
 `
 
 
@@ -23,7 +37,22 @@ const Details = () =>{
     return(
         <WrappRelative>
             <Wrapp>
-                
+                <Info 
+                    title = {"IP ADDRESS"}
+                    information = {"192.168.02.011"}
+                />
+                <Info 
+                    title = {"LOCATION"}
+                    information = {"Brooklyn, NY 10001"}
+                />
+                <Info 
+                    title = {"TIMEZONE"}
+                    information = {"UTC -05:00"}
+                />
+                <Info 
+                    title = {"ISP"}
+                    information = {"SpaceX Starlink"}
+                />
             </Wrapp>
         </WrappRelative>
     )
