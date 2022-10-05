@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components"; 
 import arrow from  '../../assets/icons/icon-arrow.svg'
 
@@ -32,11 +33,35 @@ const Sub = styled.button`
     }
 `
 
-const Input = () =>{
+
+
+const Input = ({handleSetDetails}) =>{
+    const [ipOrDomain, setIpOrDomain] = useState('');
+
+    const handleSetInput = (e)=>{
+        setIpOrDomain(e.target.value)
+    }
+
+    const handleSendInformation = ()=>{
+        fetch(`http://ipwho.is/${ipOrDomain}`)
+            .then(res=> res.json())
+            .then(res=> {
+                handleSetDetails(res)
+                console.log(res)
+            })
+            .catch(err=> console.log(err))
+    }
+
+    useEffect(()=>{
+        handleSendInformation()
+    },[])
+
+
+
     return (
         <Wrapp>
-            <Inp/>
-            <Sub/>
+            <Inp onChange={handleSetInput} />
+            <Sub onClick={handleSendInformation}/>
         </Wrapp>
     )
 }

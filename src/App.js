@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { GlobalStyle } from './assets/styles/GlobalStyles';
 import styled from 'styled-components';
 import Map from './components/organisms/Map/Map'
@@ -13,10 +13,23 @@ const Wrapp = styled.div`
 
 const App = ()=> {
 
+  const [details, setDetails] = useState('');
+  const handleSetDetails = async (det)=>{
+    try{
+      setDetails(det)
+    }
+    catch(err){
+      console.log(err)
+    }
+   
+  }
   return (
     <Wrapp>
       <GlobalStyle/>  
-      <HeaderBg/>
+      <HeaderBg 
+        handleSetDetails={handleSetDetails}
+        details={details}
+        />
       <Map/>
     </Wrapp>
   );

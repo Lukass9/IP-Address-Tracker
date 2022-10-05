@@ -33,25 +33,25 @@ const Wrapp = styled.div`
 `
 
 
-const Details = () =>{
+const Details = ({details}) =>{
     return(
         <WrappRelative>
             <Wrapp>
                 <Info 
                     title = {"IP ADDRESS"}
-                    information = {"192.168.02.011"}
+                    information = {details.ip}
                 />
                 <Info 
                     title = {"LOCATION"}
-                    information = {"Brooklyn, NY 10001"}
+                    information = {`${details.city}, ${details.country_code} ${details.postal}`}
                 />
                 <Info 
                     title = {"TIMEZONE"}
-                    information = {"UTC -05:00"}
+                    information = {`UTC `}
                 />
                 <Info 
                     title = {"ISP"}
-                    information = {"SpaceX Starlink"}
+                    information = {details.connection.isp}
                 />
             </Wrapp>
         </WrappRelative>

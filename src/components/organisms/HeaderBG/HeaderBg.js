@@ -22,13 +22,13 @@ const Wrapp = styled.div`
     }
 `
 
-const HeaderBg = ()=> {
+const HeaderBg = ({handleSetDetails, details})=> {
     
     return(
         <Wrapp>
             <Title>IP Address Tracker</Title>
-            <Input/>
-            <Details/>
+            <Input handleSetDetails={handleSetDetails}/>
+            <Details details={details}/>
         </Wrapp>
     )
 }
