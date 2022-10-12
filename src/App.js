@@ -12,17 +12,21 @@ const Wrapp = styled.div`
 `
 
 const App = ()=> {
-
-  const [details, setDetails] = useState('');
-  const handleSetDetails = async (det)=>{
-    try{
-      setDetails(det)
-    }
-    catch(err){
-      console.log(err)
-    }
-   
+  const [details, setDetails] = useState({
+    ip: '', 
+    city: '', 
+    country_code: '', 
+    postal: '',
+    UTC: '',
+    ISP: '',
+    latitude: '',
+    longitude: ''
+  });
+  
+  const handleSetDetails = (det)=>{
+    setDetails(det)
   }
+  // console.log(details)
   return (
     <Wrapp>
       <GlobalStyle/>  
@@ -30,7 +34,7 @@ const App = ()=> {
         handleSetDetails={handleSetDetails}
         details={details}
         />
-      <Map/>
+      <Map details={details}/>
     </Wrapp>
   );
 }

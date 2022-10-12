@@ -33,8 +33,6 @@ const Sub = styled.button`
     }
 `
 
-
-
 const Input = ({handleSetDetails}) =>{
     const [ipOrDomain, setIpOrDomain] = useState('');
 
@@ -43,13 +41,31 @@ const Input = ({handleSetDetails}) =>{
     }
 
     const handleSendInformation = ()=>{
-        fetch(`http://ipwho.is/${ipOrDomain}`)
+        // fetch(`https://ipwho.is/${ipOrDomain}`)
+        fetch(`http://ip-api.com/json/${ipOrDomain}?fields=33581811`)
             .then(res=> res.json())
             .then(res=> {
-                handleSetDetails(res)
                 console.log(res)
+                handleSetDetails({  ip: res.query, 
+                                    city: res.city, 
+                                    country_code: res.countryCode, 
+                                    postal: res.zip,
+                                    UTC: res.offset/3600,
+                                    ISP: res.isp,
+                                    latitude: res.lat,
+                                    longitude: res.lon
+                                })
+                // handleSetDetails({  ip: res.ip, 
+                //                     city: res.city, 
+                //                     country_code: res.country_code, 
+                //                     postal: res.postal,
+                //                     UTC: res.timezone.utc,
+                //                     ISP: res.connection.isp,
+                //                     latitude: res.latitude,
+                //                     longitude: res.longitude
+                //                 })
             })
-            .catch(err=> console.log(err))
+            .catch(err=> console.log('Błąd', err))
     }
 
     useEffect(()=>{
