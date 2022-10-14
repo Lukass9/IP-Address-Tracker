@@ -1,53 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import styled from "styled-components"; 
-import arrow from  '../../assets/icons/icon-arrow.svg'
-
-const Wrapp = styled.div` 
-    display: flex;
-`
-const Inp = styled.input` 
-    margin: 0;
-    padding: 25px;
-    border: none;
-    outline: none;
-    border-radius: 15px 0 0 15px;
-    width: 73vw;
-    cursor: pointer;
-
-    @media screen and (min-width: 1440px){
-        width: 25vw;
-        padding: 15px;
-    }
-`
-const Sub = styled.button`
-    width: 18vw;
-    background-color: #000;
-    border: none;
-    outline: none;
-    border-radius: 0 15px 15px 0;
-    background-image: url(${arrow});
-    background-position: center;
-    background-repeat: no-repeat;
-    cursor: pointer;
-
-    @media screen and (min-width: 1440px){
-        width: 3vw;
-    }
-
-    &:hover{
-        background-color: #2b2b2b;
-    }
-`
-
-const changeToUTC = (offset)=>{
-    const rest = ":00"
-    const UTC = (offset/3600).toLocaleString('en-US', {
-        minimumIntegerDigits: 2,
-        useGrouping: false
-    })
-    
-    return offset>0?  "+" + UTC + rest : UTC + rest 
-}
+import { changeToUTC } from "../../assets/helpers/changeToUTC";
+import { Inp, Sub, Wrapp } from "./Input.style";
 
 const Input = ({handleSetDetails}) =>{
     const [ipOrDomain, setIpOrDomain] = useState('');
@@ -56,7 +9,6 @@ const Input = ({handleSetDetails}) =>{
     const handleSetInput = (e)=>{
         setIpOrDomain(e.target.value)
     }
-
     const handleSendInformation = ()=>{
         // fetch(`https://ipwho.is/${ipOrDomain}`)
         fetch(`http://ip-api.com/json/${ipOrDomain}?fields=33581811`)
@@ -95,7 +47,7 @@ const Input = ({handleSetDetails}) =>{
             })
             .catch(err=> console.log('Błąd', err))
     }
-
+    
     useEffect(()=>{
         handleSendInformation()
     },[])

@@ -26,7 +26,6 @@ const App = ()=> {
   const handleSetDetails = (det)=>{
     setDetails(det)
   }
-  // console.log(details)
   return (
     <Wrapp>
       <GlobalStyle/>  
